@@ -4,8 +4,7 @@ import AuthService from "./services/auth.service";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
-import Private from "./components/Private";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -68,8 +67,8 @@ function App() {
 
       <div className="container mt-3">
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/private" element={<Private />} />
+          <Route path="/" element={<Home />} />        
+          <Route path="/home" element={<Home />} />        
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
