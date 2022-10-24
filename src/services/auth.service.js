@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "../config.json"
+import { Buffer } from 'buffer';
 
 const API_URL = config.API_URL;
 
@@ -26,7 +27,7 @@ const login = (email, password) => {
         'Authorization': `Basic ${token}`
       }
     })
-    .then((response) => {     
+    .then((response) => {
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
