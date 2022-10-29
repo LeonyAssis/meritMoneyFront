@@ -4,6 +4,7 @@ import AuthService from "./services/auth.service";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
+import PrivateRoutes from "./components/PrivateRoutes";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
             </li>
           )}
         </div>
-
+          
         {currentUser ? (
           <div className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -67,10 +68,13 @@ function App() {
 
       <div className="container mt-3">
         <Routes>
+        <Route element={<PrivateRoutes/>}>  
           <Route path="/" element={<Home />} />        
           <Route path="/home" element={<Home />} />        
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+        </Route>
+          
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </div>

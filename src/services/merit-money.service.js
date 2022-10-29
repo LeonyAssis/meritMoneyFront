@@ -8,8 +8,13 @@ const getBalanceHistories = () => {
   return axios.get(API_URL + "/balance/histories", { headers: authHeader() });
 };
 
-const postService = { 
-  getBalanceHistories,
+const getUserBalance = (userId) => { 
+  return axios.get(API_URL + `/balance/${userId}`, { headers: authHeader() });
 };
 
-export default postService;
+const meritMoneyService = { 
+  getBalanceHistories,
+  getUserBalance
+};
+
+export default meritMoneyService;

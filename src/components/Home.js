@@ -1,22 +1,49 @@
-import React, { useMemo, useState, useEffect } from "react";
-import BalanceService from "../services/balance.service";
+import React, { useMemo, useState, useEffect, useCallback } from "react";
+import MeritMoneyService from "../services/merit-money.service";
 import AuthService from "../services/auth.service";
-import { useNavigate } from "react-router-dom";
 import Table from "./Table";
-
+import jwt_decode from "jwt-decode";
 
 const Home = () => {
   const [balanceHistories, setBalanceHistories] = useState([]);
+  const [userBalance, setUserBalance] = useState([]);
 
-  const navigate = useNavigate();
+  const fetchHome = useCallback(() => {
+
+    let token = JSON.parse(localStorage.getItem("user")).token;  
+    MeritMoneyService.getUserBalance(jwt_decode(token).id).then(
+      (response) => {
+        setUserBalance(response.data);
+      },
+      (error) => {
+        // CRIAR FUNÇÃO TRATAR COD != 401 (API NÃO ESTÁ RODANDO)
+        if (error.response && error.response.status === 401) {
+          AuthService.invalidToken(error);
+        }
+      }
+    );
+
+    MeritMoneyService.getBalanceHistories().then(
+      (response) => {
+        setBalanceHistories(response.data);
+      },
+      (error) => {
+        // CRIAR FUNÇÃO TRATAR COD != 401 (API NÃO ESTÁ RODANDO)
+        if (error.response && error.response.status === 401) {
+          AuthService.invalidToken(error);
+        }
+      }
+    );
+  
+  }, [])
+
 
   useEffect(() => {
-    refresh()
-  }, []);
+    fetchHome()
+  }, [fetchHome]);
 
   const columns = useMemo(
     () => [
-
       {
         Header: 'Ultimas Transações',
         columns: [
@@ -46,29 +73,9 @@ const Home = () => {
     []
   )
 
-  function refresh() {
-    if (!JSON.parse(localStorage.getItem("user"))) {
-      navigate("/login");
-      window.location.reload();
-    }
-    BalanceService.getBalanceHistories().then(
-      (response) => {
-        setBalanceHistories(response.data);
-      },
-      (error) => {
-        console.log("Private page", error.response);
-        // Invalid token
-        if (error.response && error.response.status === 401) {
-          AuthService.logout();
-          navigate("/login");
-          window.location.reload();
-        }
-      }
-    );
-  }
-
   return (
-    <div>   
+    <div>
+      <p>{userBalance.balance}</p>
       {
         balanceHistories &&
         balanceHistories.itens

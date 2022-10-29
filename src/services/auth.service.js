@@ -1,6 +1,7 @@
 import axios from "axios";
 import config from "../config.json"
 import { Buffer } from 'buffer';
+import { Navigate } from 'react-router-dom'
 
 const API_URL = config.API_URL;
 
@@ -37,7 +38,17 @@ const login = (email, password) => {
 };
 
 const logout = () => {
+  <Navigate to='/login' />
   localStorage.removeItem("user");
+  window.location.reload();
+};
+
+const invalidToken = (...args) => {
+  if (args[0].response && args[0].response.status === 401) {
+    <Navigate to='/login' />
+    localStorage.removeItem("user");
+    window.location.reload();
+  }
 };
 
 const getCurrentUser = () => {
@@ -48,6 +59,7 @@ const authService = {
   signup,
   login,
   logout,
+  invalidToken,
   getCurrentUser,
 };
 
