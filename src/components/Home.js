@@ -1,16 +1,17 @@
-import React, { useMemo, useState, useEffect, useCallback } from "react";
+import React, { useMemo, useState, useEffect, useCallback, Fragment } from "react";
 import MeritMoneyService from "../services/merit-money.service";
 import AuthService from "../services/auth.service";
+import FormatService from "../services/format.service";
 import Table from "./Table";
 import jwt_decode from "jwt-decode";
+import Balance from "./Balance"
 
 const Home = () => {
   const [balanceHistories, setBalanceHistories] = useState([]);
   const [userBalance, setUserBalance] = useState([]);
 
   const fetchHome = useCallback(() => {
-
-    let token = JSON.parse(localStorage.getItem("user")).token;  
+    let token = JSON.parse(localStorage.getItem("user")).token;
     MeritMoneyService.getUserBalance(jwt_decode(token).id).then(
       (response) => {
         setUserBalance(response.data);
@@ -34,7 +35,7 @@ const Home = () => {
         }
       }
     );
-  
+
   }, [])
 
 
@@ -50,22 +51,27 @@ const Home = () => {
           {
             Header: 'Origem',
             accessor: 'userOrigin.name',
+            Cell: props => <div> <Fragment>{FormatService.formatOrigin(props.value)}</Fragment> </div>
           },
           {
             Header: 'Valor',
             accessor: 'value',
+            Cell: props => <div> <Fragment>{FormatService.toCurrency(props.value)}</Fragment> </div>
           },
           {
             Header: 'Destino',
             accessor: 'userDestiny.name',
+            Cell: props => <div> <Fragment>{FormatService.formatDestiny(props.value)}</Fragment> </div>
           },
           {
             Header: 'Tipo',
             accessor: 'type',
+            Cell: props => <div> <Fragment>{FormatService.formatType(props.value)}</Fragment> </div>
           },
           {
             Header: 'Data',
             accessor: 'created_at',
+            Cell: props => <div> <Fragment>{FormatService.formatDate(props.value)}</Fragment> </div>
           },
         ],
       },
@@ -73,15 +79,20 @@ const Home = () => {
     []
   )
 
+
+
   return (
     <div>
-      <p>{userBalance.balance}</p>
+      {
+        userBalance &&
+        userBalance.balance
+        && (<Balance userBalance={userBalance} />)
+      }
       {
         balanceHistories &&
         balanceHistories.itens
-        && (<Table columns={columns} data={balanceHistories.itens} teste={balanceHistories} />)
+        && (<Table columns={columns} data={balanceHistories.itens} />)
       }
-
     </div>
   );
 };

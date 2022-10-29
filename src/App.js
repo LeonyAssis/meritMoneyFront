@@ -6,6 +6,7 @@ import Signup from "./components/Signup";
 import Home from "./components/Home";
 import PrivateRoutes from "./components/PrivateRoutes";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div>
+
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -40,7 +42,7 @@ function App() {
             </li>
           )}
         </div>
-          
+
         {currentUser ? (
           <div className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -68,16 +70,27 @@ function App() {
 
       <div className="container mt-3">
         <Routes>
-        <Route element={<PrivateRoutes/>}>  
-          <Route path="/" element={<Home />} />        
-          <Route path="/home" element={<Home />} />        
-        </Route>
-          
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+          </Route>
+
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
+      <footer class="my-2">
+        {/* <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        </ul> */}
+        <p class="text-center text-muted">© 2022 @Merit Money</p>
+      </footer>
     </div>
+
   );
 }
 
