@@ -4,17 +4,31 @@ import config from "../config.json"
 
 const API_URL = config.API_URL;
 
-const getBalanceHistories = () => { 
+const getBalanceHistories = () => {
   return axios.get(API_URL + "/balance/histories", { headers: authHeader() });
 };
 
-const getUserBalance = (userId) => { 
+const getUserBalance = (userId) => {
   return axios.get(API_URL + `/balance/${userId}`, { headers: authHeader() });
 };
 
-const meritMoneyService = { 
+const getUsers = (name = null) => {
+  let params;
+  if (name) {
+    params = { name }
+  }
+  return axios.get(API_URL + '/users', { headers: authHeader(), params });
+};
+
+const transferMoney = (body) => {
+  return axios.post(API_URL + '/balance/transfer-money', body, { headers: authHeader() });
+};
+
+const meritMoneyService = {
   getBalanceHistories,
-  getUserBalance
+  getUserBalance,
+  getUsers,
+  transferMoney
 };
 
 export default meritMoneyService;

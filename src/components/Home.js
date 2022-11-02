@@ -5,6 +5,7 @@ import FormatService from "../services/format.service";
 import Table from "./Table";
 import jwt_decode from "jwt-decode";
 import Balance from "./Balance"
+import TransferBalance from "./TransferBalance"
 
 const Home = () => {
   const [balanceHistories, setBalanceHistories] = useState([]);
@@ -38,7 +39,10 @@ const Home = () => {
 
   }, [])
 
-
+  const handleCallback = () => {
+    fetchHome()
+  };
+  
   useEffect(() => {
     fetchHome()
   }, [fetchHome]);
@@ -88,6 +92,7 @@ const Home = () => {
         userBalance.balance
         && (<Balance userBalance={userBalance} />)
       }
+      <TransferBalance parentCallback={handleCallback}/>
       {
         balanceHistories &&
         balanceHistories.itens

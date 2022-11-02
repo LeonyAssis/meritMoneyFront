@@ -54,13 +54,9 @@ const Login = () => {
         </div>
         <div className="d-flex justify-content-end">
           <button type="submit" className="btn btn-primary">Entrar</button>
-        </div>
-       
-
+        </div>  
       </form>
     </div>
-
-    
   );
 };
 

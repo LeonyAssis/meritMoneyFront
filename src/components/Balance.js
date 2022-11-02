@@ -14,7 +14,7 @@ export default function Balance({ userBalance }) {
     }
 
     return (
-        <div className="d-flex flex-row-reverse">
+        <div className="d-flex">
             <div id="hidden-balance" className="hidden-balance" onClick={() => showBalance('show')}>
                 <div>Saldo</div>
                 <i className="bi bi-eye-slash"></i> ****,**

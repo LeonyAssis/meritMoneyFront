@@ -25,7 +25,6 @@ function App() {
 
   return (
     <div>
-
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -33,14 +32,7 @@ function App() {
               Home
             </Link>
           </li>
-
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/private"} className="nav-link">
-                Private
-              </Link>
-            </li>
-          )}
+   
         </div>
 
         {currentUser ? (
@@ -79,7 +71,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
-      <footer class="my-2">
+      <footer className="my-2">
         {/* <ul class="nav justify-content-center border-bottom pb-3 mb-3">
           <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
           <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
@@ -87,7 +79,7 @@ function App() {
           <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
           <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
         </ul> */}
-        <p class="text-center text-muted">© 2022 @Merit Money</p>
+        <p className="text-center text-muted">© 2022 @Merit Money</p>
       </footer>
     </div>
 
