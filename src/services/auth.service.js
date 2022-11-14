@@ -5,9 +5,10 @@ import { Navigate } from 'react-router-dom'
 
 const API_URL = config.API_URL;
 
-const signup = (email, password) => {
+const signup = (name, email, password) => {
   return axios
-    .post(API_URL + "", {
+    .post(API_URL + "/users", {
+      name,
       email,
       password,
     })
