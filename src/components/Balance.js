@@ -19,7 +19,7 @@ export default function Balance({ userBalance }) {
                 <div>Saldo</div>
                 <i className="bi bi-eye-slash"></i> ****,**
             </div>
-            <div id="show-balance" className={"hidden-balance hidden " + (userBalance && userBalance.balance > 0 ? 'positive-balance' : 'negative-balance')} onClick={() => showBalance('hidden')}>
+            <div id="show-balance" className={"hidden-balance hidden " + (userBalance && userBalance.balance >= 0 ? 'positive-balance' : 'negative-balance')} onClick={() => showBalance('hidden')}>
                 <div>Saldo</div>
                 <i className="bi bi-piggy-bank"></i> M$ {FormatService.toCurrency(userBalance && userBalance.balance)}
             </div>

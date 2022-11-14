@@ -38,7 +38,6 @@ const Signup = () => {
         console.log(err);
       }
     }
-
   };
 
   return (
@@ -65,7 +64,7 @@ const Signup = () => {
               placeholder="Digite o nome"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              minlength="8"
+              minLength="8"
               required
             />
           </div>

@@ -88,11 +88,14 @@ const Home = () => {
   return (
     <div>
       {
-        userBalance &&
-        userBalance.balance
-        && (<Balance userBalance={userBalance} />)
+        userBalance &&       
+        (<Balance userBalance={userBalance} />)
       }
-      <TransferBalance parentCallback={handleCallback} />
+      {
+        userBalance &&
+        (userBalance.balance > 0) &&
+        <TransferBalance parentCallback={handleCallback} />
+      }
       {
         balanceHistories &&
         balanceHistories.itens
