@@ -1,4 +1,4 @@
 {
-    "API_URL": "https://merit-money-leony.herokuapp.com",
-    "API_URL_dev": "http://localhost:5018"
+    "API_URL_dev": "https://merit-money-leony.herokuapp.com",
+    "API_URL": "http://localhost:5018"
 }

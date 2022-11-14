@@ -54,12 +54,24 @@ label {
   color: #008000
 }
 
-.negative-balance{
+.negative-balance, .err{
   color: #ff0000
 }
 
 
-html, body {padding:0; margin:0; height:100%;}
-footer{position: absolute; bottom: 0; left: 0; right: 0;}
-/* Other Classes for Page Styling */
+@media (max-width: 5000px)
+{
+  .html, body {padding:0; margin:0; height:100%;}
+  footer{position: absolute; bottom: 0; left: 0; right: 0;}
+  /* Other Classes for Page Styling */
+  
+}
+
+
+@media (max-width: 1024px)
+{ 
+  footer{display: none}
+  /* Other Classes for Page Styling */
+  
+}
 

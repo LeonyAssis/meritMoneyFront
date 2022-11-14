@@ -42,7 +42,7 @@ const Home = () => {
   const handleCallback = () => {
     fetchHome()
   };
-  
+
   useEffect(() => {
     fetchHome()
   }, [fetchHome]);
@@ -92,13 +92,14 @@ const Home = () => {
         userBalance.balance
         && (<Balance userBalance={userBalance} />)
       }
-      <TransferBalance parentCallback={handleCallback}/>
+      <TransferBalance parentCallback={handleCallback} />
       {
         balanceHistories &&
         balanceHistories.itens
         && (<Table columns={columns} data={balanceHistories.itens} />)
       }
     </div>
+
   );
 };
 

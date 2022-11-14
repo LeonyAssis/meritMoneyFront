@@ -6,6 +6,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [error, setError] = useState("")
+ 
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -16,8 +19,8 @@ const Login = () => {
           navigate("/");
           window.location.reload();
         },
-        (error) => {
-          console.log(error);
+        () => {
+          setError("Email ou senha incorreta!");         
         }
       );
     } catch (err) {
@@ -50,6 +53,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+             {error && <span className='err'>{error}</span>}
           </div>
         </div>
         <div className="d-flex justify-content-end">

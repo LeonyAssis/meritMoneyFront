@@ -63,9 +63,9 @@ const TransferBalance = (props) => {
   }
 
   return (
-    <>
-      <Button variant="primary" onClick={handleShow} className="float-end">
-        Celebrar com colegas
+    <div className="d-flex flex-row-reverse">
+      <Button variant="primary" onClick={handleShow}>
+        Celebrar com colegas <i className="bi bi-person-hearts"></i>
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -106,7 +106,7 @@ const TransferBalance = (props) => {
         </Modal.Body>
 
       </Modal>
-    </>
+    </div>
   );
 }
 
